@@ -2,9 +2,11 @@ variable "REPO" {
   default = "2e0byo"
 }
 
+variable "VERSION" {
+}
+
 group "default" {
   targets = ["tidal-radio-iris", "tidal-iris", "tidal"]
-  platforms = ["linux/amd64", "linux/arm64", "linux/arm/v7", "linux/arm/v6"]
 }
 
 target "_setup" {
@@ -18,7 +20,10 @@ target "_setup" {
 }
 
 target "tidal" {
-  tags = ["${REPO}/tidal:latest"]
+  tags = [
+    "${REPO}/tidal:latest",
+    "${REPO}/tidal:${VERSION}",
+  ]
   inherits = ["_setup"]
 }
 
@@ -26,7 +31,10 @@ target "tidal-iris" {
   args = {
     BASE = "tidal"
   }
-  tags = ["${REPO}/tidal-iris:latest"]
+  tags = [
+    "${REPO}/tidal-iris:latest",
+    "${REPO}/tidal-iris:${VERSION}",
+  ]
   inherits = ["_setup"]
 }
 
@@ -34,6 +42,9 @@ target "tidal-radio-iris" {
   args = {
     BASE = "radio"
   }
-  tags = ["${REPO}/tidal-radio-iris:latest"]
+  tags = [
+    "${REPO}/tidal-radio-iris:latest",
+    "${REPO}/tidal-radio-iris:${VERSION}",
+  ]
   inherits = ["_setup"]
 }
