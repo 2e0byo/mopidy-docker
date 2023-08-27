@@ -26,4 +26,4 @@ jobs:
           docker buildx inspect --bootstrap builder
       - name: Build and push image
         run: |
-          docker buildx bake --push --version ${{ github.ref_name }}
+          docker buildx bake --push --set VERSION=${{ github.ref_name }}
