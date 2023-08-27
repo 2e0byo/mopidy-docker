@@ -6,7 +6,7 @@ variable "VERSION" {
 }
 
 group "default" {
-  targets = ["tidal-radio-iris", "tidal-iris", "tidal"]
+  targets = ["mopidy-tidal-radio-iris", "mopidy-tidal-iris", "mopidy-tidal", "mopidy"]
 }
 
 target "_setup" {
@@ -19,32 +19,40 @@ target "_setup" {
   ]
 }
 
-target "tidal" {
+target "mopidy" {
   tags = [
-    "${REPO}/tidal:latest",
-    "${REPO}/tidal:${VERSION}",
+    "${REPO}/mopidy:latest",
+    "${REPO}/mopidy:${VERSION}",
   ]
   inherits = ["_setup"]
 }
 
-target "tidal-iris" {
+target "mopidy-tidal" {
+  tags = [
+    "${REPO}/mopidy-tidal:latest",
+    "${REPO}/mopidy-tidal:${VERSION}",
+  ]
+  inherits = ["_setup"]
+}
+
+target "mopidy-tidal-iris" {
   args = {
     BASE = "tidal"
   }
   tags = [
-    "${REPO}/tidal-iris:latest",
-    "${REPO}/tidal-iris:${VERSION}",
+    "${REPO}/mopidy-tidal-iris:latest",
+    "${REPO}/mopidy-tidal-iris:${VERSION}",
   ]
   inherits = ["_setup"]
 }
 
-target "tidal-radio-iris" {
+target "mopidy-tidal-radio-iris" {
   args = {
     BASE = "radio"
   }
   tags = [
-    "${REPO}/tidal-radio-iris:latest",
-    "${REPO}/tidal-radio-iris:${VERSION}",
+    "${REPO}/mopidy-tidal-radio-iris:latest",
+    "${REPO}/mopidy-tidal-radio-iris:${VERSION}",
   ]
   inherits = ["_setup"]
 }
