@@ -7,6 +7,7 @@ RUN --mount=type=cache,id=apk-${TARGETARCH},sharing=locked,target=/etc/apk/cache
     apk update
     apk add mopidy
 EOF
+CMD ["mopidy", "--config", "/etc/config/mopidy.conf"]
 
 from mopidy as local
 RUN --mount=type=cache,id=pip-${TARGETARCH},target=/var/cache/pip <<-EOF
