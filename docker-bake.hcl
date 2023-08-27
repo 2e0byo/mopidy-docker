@@ -4,7 +4,7 @@ variable "REPO" {
 
 group "default" {
   targets = ["tidal-radio-iris", "tidal-iris", "tidal"]
-  platforms = ["linux/amd64", "linux/arm64", "linux/arm/v7", "linux/arm/v6"]
+  platforms = ["linux/amd64", "linux/arm64", "linux/arm/v7"]
 }
 
 target "_platforms" {
