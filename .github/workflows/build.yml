@@ -1,0 +1,27 @@
+name: build
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log in to docker
+        uses: docker/login-action@v2
+        with:
+          username: 2e0byo # hardly secret...
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Set up QEMU for emulated building
+        uses: docker/setup-qemu-action@v2
+      - uses: actions/checkout@v3
+      - name: Create builder
+        run: |
+          docker buildx create --user builder
+          docker buildx inspect --bootstrap builder
+      - name: Build and push image
+        run: |
+          docker buildx bake --push
