@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Create builder
         run: |
-          docker buildx create --use builder
+          docker buildx create --name builder --driver=docker-container --driver-opt=image=moby/buildkit:master --use
           docker buildx inspect --bootstrap builder
       - name: Build and push image
         run: |
