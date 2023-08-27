@@ -13,6 +13,8 @@ jobs:
         with:
           username: 2e0byo # hardly secret...
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Expose GitHub Runtime for cache
+        uses: crazy-max/ghaction-github-runtime@v2
       - name: Set up QEMU for emulated building
         uses: docker/setup-qemu-action@v2
       - uses: actions/checkout@v3
