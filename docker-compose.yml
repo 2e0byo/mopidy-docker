@@ -1,0 +1,14 @@
+# Example docker-compose for deployment
+services:
+  mopidy:
+    image: 2e0byo/mopidy-tidal-radio-iris:latest
+    volumes:
+      - ./mopidy:/var/run/mopidy
+      - /run/user/1000/pipewire-0:/tmp/pipewire-0 # change UID if required
+    ports:
+      - "6680:6680"
+    environment:
+      XDG_RUNTIME_DIR: /tmp
+
+
+
