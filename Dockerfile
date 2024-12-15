@@ -7,7 +7,7 @@ arg MOPIDY_TIDAL=0.3.9
 arg MOPIDY_LOCAL=3.2.1
 arg MOPIDY_RADIONET=7b19c20
 
-FROM python:alpine as mopidy
+FROM python:${PYTHON_VERSION}-alpine as mopidy
 ENV PIP_CACHE_DIR=/var/cache/pip
 ARG GST_VERSION
 ARG PYTHON_VERSION
@@ -21,7 +21,6 @@ RUN --mount=type=cache,id=apk-${TARGETARCH},sharing=locked,target=/etc/apk/cache
       gst-plugins-good=${GST_VERSION} \
       gst-plugins-ugly=${GST_VERSION} \
       gst-plugins-bad=${GST_VERSION} \
-      python3=${PYTHON_VERSION} \
       py3-gst \
       git
 EOF
