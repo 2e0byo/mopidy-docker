@@ -1,6 +1,6 @@
 #syntax=docker/dockerfile:1.4
 arg BASE=radio
-arg GST_VERSION=1.24.10-r0
+arg GST_VERSION=1.4.9-r0
 arg PYTHON_VERSION=3.13.7
 arg MOPIDY_IRIS=3.69.3
 arg MOPIDY_TIDAL=v0.3.11
