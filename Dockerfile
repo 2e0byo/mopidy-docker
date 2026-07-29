@@ -1,10 +1,10 @@
 #syntax=docker/dockerfile:1.4
 arg BASE=radio
-arg GST_VERSION=1.24.10-r0
-arg PYTHON_VERSION=3.12.8
-arg MOPIDY_IRIS=3.69.3
-arg MOPIDY_TIDAL=v0.3.9
-arg MOPIDY_LOCAL=3.2.1
+arg GST_VERSION=1.28.3-r0
+arg PYTHON_VERSION=3.14.6
+arg MOPIDY_IRIS=3.70.0
+arg MOPIDY_TIDAL=v0.3.13
+arg MOPIDY_LOCAL=4.0.0
 arg MOPIDY_RADIONET=7b19c20
 
 FROM python:${PYTHON_VERSION}-alpine as mopidy
