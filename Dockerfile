@@ -59,5 +59,5 @@ EOF
 from ${BASE} as tidal-iris
 ARG MOPIDY_IRIS
 RUN --mount=type=cache,id=pip-${TARGETARCH},sharing=locked,target=/var/cache/pip <<-EOF
-    pip install mopidy-iris==${MOPIDY_IRIS}
+    pip install mopidy-iris==${MOPIDY_IRIS} setuptools
 EOF
