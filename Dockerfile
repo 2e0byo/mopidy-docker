@@ -4,7 +4,7 @@ arg GST_VERSION=1.28.3-r0
 arg PYTHON_VERSION=3.14.6
 arg MOPIDY_IRIS=3.70.0
 arg MOPIDY_TIDAL=v0.3.13
-arg MOPIDY_LOCAL=4.0.0
+arg MOPIDY_LOCAL="<4"
 arg MOPIDY_RADIONET=7b19c20
 
 FROM python:${PYTHON_VERSION}-alpine as mopidy
@@ -32,7 +32,8 @@ RUN --mount=type=cache,id=apk-${TARGETARCH},sharing=locked,target=/etc/apk/cache
       cairo-dev \
       gobject-introspection-dev
 
-    pip install mopidy pygobject
+    pip install "mopidy<4" pygobject "setuptools<82"
+    pip show mopidy
     apk del build-base cairo-dev gobject-introspection-dev
 EOF
 CMD ["mopidy", "--config", "/var/run/mopidy/config/mopidy.conf"]
@@ -40,7 +41,7 @@ CMD ["mopidy", "--config", "/var/run/mopidy/config/mopidy.conf"]
 from mopidy as local
 ARG MOPIDY_LOCAL
 RUN --mount=type=cache,id=pip-${TARGETARCH},target=/var/cache/pip <<-EOF
-    pip install mopidy-local==${MOPIDY_LOCAL}
+    pip install mopidy-local${MOPIDY_LOCAL}
 EOF
 
 from local as tidal
@@ -59,5 +60,5 @@ EOF
 from ${BASE} as tidal-iris
 ARG MOPIDY_IRIS
 RUN --mount=type=cache,id=pip-${TARGETARCH},sharing=locked,target=/var/cache/pip <<-EOF
-    pip install mopidy-iris==${MOPIDY_IRIS} setuptools
+    pip install mopidy-iris==${MOPIDY_IRIS}
 EOF

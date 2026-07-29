@@ -6,7 +6,7 @@ variable "VERSION" {
 }
 
 group "default" {
-  targets = ["mopidy-tidal-radio-iris", "mopidy-tidal-iris", "mopidy-tidal", "mopidy"]
+  targets = ["mopidy-tidal-radio-iris", "mopidy-tidal-iris", "mopidy-tidal", "mopidy",]
 }
 
 target "_setup" {
@@ -25,6 +25,7 @@ target "mopidy" {
     "${REPO}/mopidy:${VERSION}",
   ]
   inherits = ["_setup"]
+  target = "mopidy"
 }
 
 target "mopidy-tidal" {
@@ -33,6 +34,7 @@ target "mopidy-tidal" {
     "${REPO}/mopidy-tidal:${VERSION}",
   ]
   inherits = ["_setup"]
+  target = "tidal"
 }
 
 target "mopidy-tidal-iris" {
@@ -44,6 +46,7 @@ target "mopidy-tidal-iris" {
     "${REPO}/mopidy-tidal-iris:${VERSION}",
   ]
   inherits = ["_setup"]
+  target = "tidal-iris"
 }
 
 target "mopidy-tidal-radio-iris" {
@@ -55,4 +58,5 @@ target "mopidy-tidal-radio-iris" {
     "${REPO}/mopidy-tidal-radio-iris:${VERSION}",
   ]
   inherits = ["_setup"]
+  target = "tidal-iris"
 }
